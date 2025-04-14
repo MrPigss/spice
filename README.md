@@ -1,3 +1,14 @@
+# implementation
+
+- Each thread has it's own queue
+- It places all jobs in the queue (One of wich is shared)
+- When awaiting, if the job has not been started by another queue then run it yourself
+- When awaiting, if the job has ben "stolen" then wait for the response.
+
+- To start we call `Threadpool.call()`
+    - This will call `Worker.begin()` and return a `Task`.
+    - Then it will run `Task.call()` and returns the result.
+
 # Spice: Parallelism with sub-nanosecond overhead
 
 ![Time to calculate sum of binary tree of 100M nodes with Spice](bench/spice-tree-sum-100M.svg)
